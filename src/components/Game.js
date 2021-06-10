@@ -13,7 +13,19 @@ export default class Game extends Component {
                     squares: Array(9).fill(null)
                 }
             ]
-        }
+        };
+    }
+
+    handleReset() {
+        this.setState({
+            stepNumber: 0,
+            xIsNext: true,
+            history: [
+                {
+                    squares: Array(9).fill(null)
+                }
+            ]
+        })
     }
 
     handleClick(i) {
@@ -52,7 +64,7 @@ export default class Game extends Component {
         } else {
             status = 'Next Player is ' + (this.state.xIsNext ? 'X' : 'O');
         }
-
+ 
         return (
             <div className="game">
                 <div className="game-info">
@@ -64,6 +76,7 @@ export default class Game extends Component {
                     <Board onClick={(i) => this.handleClick(i)}
                         squares={current.squares} />
                 </div>
+                <button type = "button" className = "reset-button" onClick = {() => {this.handleReset()}}>Reset Game</button>
             </div>
         )
     }
